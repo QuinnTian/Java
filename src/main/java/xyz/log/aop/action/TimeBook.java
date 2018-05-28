@@ -1,8 +1,10 @@
-package xyz.log.impl;
+package xyz.log.aop.action;
+
+import xyz.log.aop.impl.TimeBookInterface;
 
 public class TimeBook implements TimeBookInterface {
     @Override
     public void doAuditing(String name) {
-        //此处写审核数据相关程序
+        //审核数据相关代码
     }
 }

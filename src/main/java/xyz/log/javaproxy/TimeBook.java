@@ -1,10 +1,10 @@
-package xyz.log.java;
+package xyz.log.javaproxy;
 
 
 
 public class TimeBook implements TimeBookInterface {
     @Override
     public void doAuditing(String name) {
-        //审核数据相关程序
+        //此处写审核数据相关程序
     }
 }

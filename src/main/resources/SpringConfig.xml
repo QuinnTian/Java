@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--使用Spring aop 实现日志输出的Bean-->
+    <!--注册日志bean组件-->
+    <bean id="log" class="xyz.log.aop.log.LogAround"/>
+    <!--审核程序-->
+    <bean id="timeBook" class="xyz.log.aop.action.TimeBook"/>
+    <!--使用Spring ProxyFactoryBean来实现代理-->
+    <bean id="logProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" >
+            <value>xyz.log.aop.impl.TimeBookInterface</value>
+        </property>
+        <property name="target" >
+            <ref bean="timeBook"/>
+        </property>
+        <!--指定要代理的类-->
+        <property name="interceptorNames" >
+            <list>
+                <value>log</value>
+            </list>
+        </property>
+    </bean>
+    <!--财务审核-->
+    <bean id="finance" class="xyz.log.aop.action.Finance"/>
+    <bean id="logProxy1" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" >
+            <value>xyz.log.aop.impl.FinanceInterface</value>
+        </property>
+        <property name="target" >
+            <ref bean="finance"/>
+        </property>
+        <!--指定要代理的类-->
+        <property name="interceptorNames" >
+            <list>
+                <value>log</value>
+            </list>
+        </property>
+    </bean>
+        
+
+</beans>

@@ -1,4 +1,4 @@
-package xyz.log.java;
+package xyz.log.javaproxy;
 
 
 
